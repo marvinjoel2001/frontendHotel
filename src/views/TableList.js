@@ -27,143 +27,48 @@ import {
   Row,
   Col,
 } from "reactstrap";
+import DataTable from "../components/DataTable/DataTable";
 
-function Tables() {
+function Pagos() {
+  const titles = [
+    {
+      name: 'id',
+      label: 'Id',
+    },
+    {
+      name: 'fecha',
+      label: 'Fecha del Pago',
+    },
+    {
+      name: 'monto',
+      label: 'Monto',
+    },
+    {
+      name: 'cliente',
+      label: 'Cliente',
+    },
+    {
+      name: 'habitacion',
+      label: 'Habitacion',
+    },
+    {
+      name: 'fecha_entrada',
+      label: 'Entrada',
+    },
+    {
+      name: 'fecha_salida',
+      label: 'Salida',
+    },
+  ];
+
+  const apiEndpoint = "http://127.0.0.1:8000/api/pagos/";
   return (
     <>
       <div className="content">
-        <Row>
-          <Col md="12">
-            <Card>
-              <CardHeader>
-                <CardTitle tag="h4">Simple Table</CardTitle>
-              </CardHeader>
-              <CardBody>
-                <Table className="tablesorter" responsive>
-                  <thead className="text-primary">
-                    <tr>
-                      <th>Name</th>
-                      <th>Country</th>
-                      <th>City</th>
-                      <th className="text-center">Salary</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Dakota Rice</td>
-                      <td>Niger</td>
-                      <td>Oud-Turnhout</td>
-                      <td className="text-center">$36,738</td>
-                    </tr>
-                    <tr>
-                      <td>Minerva Hooper</td>
-                      <td>Curaçao</td>
-                      <td>Sinaai-Waas</td>
-                      <td className="text-center">$23,789</td>
-                    </tr>
-                    <tr>
-                      <td>Sage Rodriguez</td>
-                      <td>Netherlands</td>
-                      <td>Baileux</td>
-                      <td className="text-center">$56,142</td>
-                    </tr>
-                    <tr>
-                      <td>Philip Chaney</td>
-                      <td>Korea, South</td>
-                      <td>Overland Park</td>
-                      <td className="text-center">$38,735</td>
-                    </tr>
-                    <tr>
-                      <td>Doris Greene</td>
-                      <td>Malawi</td>
-                      <td>Feldkirchen in Kärnten</td>
-                      <td className="text-center">$63,542</td>
-                    </tr>
-                    <tr>
-                      <td>Mason Porter</td>
-                      <td>Chile</td>
-                      <td>Gloucester</td>
-                      <td className="text-center">$78,615</td>
-                    </tr>
-                    <tr>
-                      <td>Jon Porter</td>
-                      <td>Portugal</td>
-                      <td>Gloucester</td>
-                      <td className="text-center">$98,615</td>
-                    </tr>
-                  </tbody>
-                </Table>
-              </CardBody>
-            </Card>
-          </Col>
-          <Col md="12">
-            <Card className="card-plain">
-              <CardHeader>
-                <CardTitle tag="h4">Table on Plain Background</CardTitle>
-                <p className="category">Here is a subtitle for this table</p>
-              </CardHeader>
-              <CardBody>
-                <Table className="tablesorter" responsive>
-                  <thead className="text-primary">
-                    <tr>
-                      <th>Name</th>
-                      <th>Country</th>
-                      <th>City</th>
-                      <th className="text-center">Salary</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Dakota Rice</td>
-                      <td>Niger</td>
-                      <td>Oud-Turnhout</td>
-                      <td className="text-center">$36,738</td>
-                    </tr>
-                    <tr>
-                      <td>Minerva Hooper</td>
-                      <td>Curaçao</td>
-                      <td>Sinaai-Waas</td>
-                      <td className="text-center">$23,789</td>
-                    </tr>
-                    <tr>
-                      <td>Sage Rodriguez</td>
-                      <td>Netherlands</td>
-                      <td>Baileux</td>
-                      <td className="text-center">$56,142</td>
-                    </tr>
-                    <tr>
-                      <td>Philip Chaney</td>
-                      <td>Korea, South</td>
-                      <td>Overland Park</td>
-                      <td className="text-center">$38,735</td>
-                    </tr>
-                    <tr>
-                      <td>Doris Greene</td>
-                      <td>Malawi</td>
-                      <td>Feldkirchen in Kärnten</td>
-                      <td className="text-center">$63,542</td>
-                    </tr>
-                    <tr>
-                      <td>Mason Porter</td>
-                      <td>Chile</td>
-                      <td>Gloucester</td>
-                      <td className="text-center">$78,615</td>
-                    </tr>
-                    <tr>
-                      <td>Jon Porter</td>
-                      <td>Portugal</td>
-                      <td>Gloucester</td>
-                      <td className="text-center">$98,615</td>
-                    </tr>
-                  </tbody>
-                </Table>
-              </CardBody>
-            </Card>
-          </Col>
-        </Row>
+        <DataTable titles={titles} apiEndpoint={apiEndpoint} />
       </div>
     </>
   );
 }
 
-export default Tables;
+export default Pagos;

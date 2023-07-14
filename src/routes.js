@@ -16,13 +16,14 @@
 
 */
 import Dashboard from "views/Dashboard.js";
-import Icons from "views/Icons.js";
-import Map from "views/Map.js";
-import Notifications from "views/Notifications.js";
 import Rtl from "views/Rtl.js";
 import TableList from "views/TableList.js";
 import Typography from "views/Typography.js";
 import UserProfile from "views/UserProfile.js";
+import Clients from "views/Icons.js";
+import Habitaciones from "views/Map.js";
+import Reservas from "views/Notifications.js";
+import Pagos from "views/TableList.js";
 
 var routes = [
   {
@@ -34,27 +35,27 @@ var routes = [
     layout: "/admin",
   },
   {
-    path: "/icons",
-    name: "Icons",
+    path: "/clientes",
+    name: "Clientes",
     rtlName: "الرموز",
-    icon: "tim-icons icon-atom",
-    component: <Icons />,
+    icon: "tim-icons icon-badge",
+    component: <Clients />,
     layout: "/admin",
   },
   {
-    path: "/map",
-    name: "Map",
+    path: "/habitaciones",
+    name: "Habitaciones",
     rtlName: "خرائط",
-    icon: "tim-icons icon-pin",
-    component: <Map />,
+    icon: "tim-icons icon-key-25",
+    component: <Habitaciones />,
     layout: "/admin",
   },
   {
-    path: "/notifications",
-    name: "Notifications",
+    path: "/reservas",
+    name: "Reservaciones",
     rtlName: "إخطارات",
     icon: "tim-icons icon-bell-55",
-    component: <Notifications />,
+    component: <Reservas />,
     layout: "/admin",
   },
   {
@@ -66,11 +67,11 @@ var routes = [
     layout: "/admin",
   },
   {
-    path: "/tables",
-    name: "Table List",
+    path: "/pagos",
+    name: "Pagos",
     rtlName: "قائمة الجدول",
-    icon: "tim-icons icon-puzzle-10",
-    component: <TableList />,
+    icon: "tim-icons icon-money-coins",
+    component: <Pagos />,
     layout: "/admin",
   },
   {

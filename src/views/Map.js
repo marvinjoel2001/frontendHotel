@@ -19,6 +19,7 @@ import React from "react";
 
 // reactstrap components
 import { Card, CardHeader, CardBody, Row, Col } from "reactstrap";
+import DataTable from "../components/DataTable/DataTable";
 
 const MapWrapper = () => {
   const mapRef = React.useRef(null);
@@ -298,29 +299,38 @@ const MapWrapper = () => {
   return <div ref={mapRef} />;
 };
 
-function Map() {
+function Habitaciones() {
+  const titles = [
+    {
+      name: 'id',
+      label: 'Id',
+    },
+    {
+      name: 'numero',
+      label: 'Numero',
+    },
+    {
+      name: 'capacidad',
+      label: 'Capacidad',
+    },
+    {
+      name: 'ocupada',
+      label: 'Ocupada',
+    },
+    {
+      name: 'precio',
+      label: 'Precio',
+    },
+  ];
+
+  const apiEndpoint = "http://127.0.0.1:8000/api/habitaciones/";
   return (
     <>
       <div className="content">
-        <Row>
-          <Col md="12">
-            <Card className="card-plain">
-              <CardHeader>Google Maps</CardHeader>
-              <CardBody>
-                <div
-                  id="map"
-                  className="map"
-                  style={{ position: "relative", overflow: "hidden" }}
-                >
-                  <MapWrapper />
-                </div>
-              </CardBody>
-            </Card>
-          </Col>
-        </Row>
+        <DataTable titles={titles} apiEndpoint={apiEndpoint} />
       </div>
     </>
   );
 }
 
-export default Map;
+export default Habitaciones;

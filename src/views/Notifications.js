@@ -31,8 +31,33 @@ import {
   Row,
   Col,
 } from "reactstrap";
+import DataTable from "../components/DataTable/DataTable";
 
-function Notifications() {
+function Reservas() {
+  const titles = [
+    {
+      name: 'id',
+      label: 'Id',
+    },
+    {
+      name: 'cliente',
+      label: 'Cliente',
+    },
+    {
+      name: 'habitacion',
+      label: 'Habitacion',
+    },
+    {
+      name: 'fecha_entrada',
+      label: 'Entrada',
+    },
+    {
+      name: 'fecha_salida',
+      label: 'Salida',
+    },
+  ];
+
+  const apiEndpoint = "http://127.0.0.1:8000/api/reservas/";
   const notificationAlertRef = React.useRef(null);
   const notify = (place) => {
     var color = Math.floor(Math.random() * 5 + 1);
@@ -73,6 +98,7 @@ function Notifications() {
     };
     notificationAlertRef.current.notificationAlert(options);
   };
+
   return (
     <>
       <div className="content">
@@ -232,9 +258,10 @@ function Notifications() {
             </Card>
           </Col>
         </Row>
+        <DataTable titles={titles} apiEndpoint={apiEndpoint} />
       </div>
     </>
   );
 }
 
-export default Notifications;
+export default Reservas;
