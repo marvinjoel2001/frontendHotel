@@ -18,16 +18,19 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 const App = () => {
     const initialLoggedInState = localStorage.getItem('isLoggedIn') === 'true';
     const [isLoggedIn, setIsLoggedIn] = useState(initialLoggedInState);
+
     const handleLoginSuccess = () => {
         setIsLoggedIn(true);
-        localStorage.setItem('isLoggedIn', true);
-        window.location.reload(); // Recargar la página después de iniciar sesión
+        localStorage.setItem('isLoggedIn', 'true');
+        // Redirigir a la ruta '/admin/dashboard'
+        window.location.href = '/admin/dashboard';
     };
 
     const handleLogout = () => {
         setIsLoggedIn(false);
         localStorage.removeItem('isLoggedIn');
-        window.location.reload();
+        // Redirigir a la ruta '/login'
+        window.location.href = '/login';
     };
 
     return (
@@ -36,11 +39,10 @@ const App = () => {
                 <Router>
                     <Routes>
                         <Route path="/login" element={<Login onLoginSuccess={handleLoginSuccess} />} />
-                        <Route path="/admin/*" element={<AdminLayout />} />
                         {isLoggedIn ? (
-                            <Route path="*" element={<Navigate to="/admin/dashboard" replace />} />
+                            <Route path="/admin/*" element={<AdminLayout />} />
                         ) : (
-                            <Route path="*" element={<Navigate to="/login" replace />} />
+                            <Navigate to="/login" replace />
                         )}
                     </Routes>
                 </Router>
