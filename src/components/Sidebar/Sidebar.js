@@ -57,6 +57,9 @@ function Sidebar(props) {
   const linkOnClick = () => {
     document.documentElement.classList.remove("nav-open");
   };
+  const customLogoUrl =
+      "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/elegant-royal-hotel-logo-design-template-baa93e95a4caef947345ca72f87a2400_screen.jpg?ts=1611220642";
+
   const { routes, rtlActive, logo } = props;
   let logoImg = null;
   let logoText = null;
@@ -84,26 +87,27 @@ function Sidebar(props) {
           {logo.text}
         </a>
       );
-    } else {
+    }  else {
       logoImg = (
-        <Link
-          to={logo.innerLink}
-          className="simple-text logo-mini"
-          onClick={props.toggleSidebar}
-        >
-          <div className="logo-img">
-            <img src={logo.imgSrc} alt="react-logo" />
-          </div>
-        </Link>
+          <Link
+              to={logo.innerLink}
+              className="simple-text logo-mini"
+              onClick={props.toggleSidebar}
+          >
+            <div className="logo-img">
+              {/* Utiliza la nueva URL de la imagen proporcionada */}
+              <img src={customLogoUrl} alt="hotel-logo" />
+            </div>
+          </Link>
       );
       logoText = (
-        <Link
-          to={logo.innerLink}
-          className="simple-text logo-normal"
-          onClick={props.toggleSidebar}
-        >
-          {logo.text}
-        </Link>
+          <Link
+              to={logo.innerLink}
+              className="simple-text logo-normal"
+              onClick={props.toggleSidebar}
+          >
+            {logo.text}
+          </Link>
       );
     }
   }
@@ -112,12 +116,10 @@ function Sidebar(props) {
       {({ color }) => (
         <div className="sidebar" data={color}>
           <div className="sidebar-wrapper" ref={sidebarRef}>
-            {logoImg !== null || logoText !== null ? (
-              <div className="logo">
-                {logoImg}
-                {logoText}
-              </div>
-            ) : null}
+            <div style={{ textAlign: "center", padding: "20px" }}>
+              <img src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/elegant-royal-hotel-logo-design-template-baa93e95a4caef947345ca72f87a2400_screen.jpg?ts=1611220642" alt="Hotel Cardigan Logo" style={{ maxWidth: "200px", height: "auto" }} />
+              <h2>Hotel Royal</h2>
+            </div>
             <Nav>
               {routes.map((prop, key) => {
                 if (prop.redirect) return null;
@@ -139,12 +141,7 @@ function Sidebar(props) {
                   </li>
                 );
               })}
-              <li className="active-pro">
-                <ReactstrapNavLink href="https://www.creative-tim.com/product/black-dashboard-pro-react?ref=bdr-user-archive-sidebar-upgrade-pro">
-                  <i className="tim-icons icon-spaceship" />
-                  <p>Upgrade to PRO</p>
-                </ReactstrapNavLink>
-              </li>
+
             </Nav>
           </div>
         </div>

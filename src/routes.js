@@ -59,36 +59,12 @@ var routes = [
     layout: "/admin",
   },
   {
-    path: "/user-profile",
-    name: "User Profile",
-    rtlName: "ملف تعريفي للمستخدم",
-    icon: "tim-icons icon-single-02",
-    component: <UserProfile />,
-    layout: "/admin",
-  },
-  {
     path: "/pagos",
     name: "Pagos",
     rtlName: "قائمة الجدول",
     icon: "tim-icons icon-money-coins",
     component: <Pagos />,
     layout: "/admin",
-  },
-  {
-    path: "/typography",
-    name: "Typography",
-    rtlName: "طباعة",
-    icon: "tim-icons icon-align-center",
-    component: <Typography />,
-    layout: "/admin",
-  },
-  {
-    path: "/rtl-support",
-    name: "RTL Support",
-    rtlName: "ار تي ال",
-    icon: "tim-icons icon-world",
-    component: <Rtl />,
-    layout: "/rtl",
   },
 ];
 export default routes;

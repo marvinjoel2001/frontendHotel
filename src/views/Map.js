@@ -15,11 +15,12 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import React, {useState} from "react";
 
 // reactstrap components
-import { Card, CardHeader, CardBody, Row, Col } from "reactstrap";
+import {Card, CardHeader, CardBody, Row, Col, Button} from "reactstrap";
 import DataTable from "../components/DataTable/DataTable";
+import Formulario from "../components/form";
 
 const MapWrapper = () => {
   const mapRef = React.useRef(null);
@@ -324,13 +325,26 @@ function Habitaciones() {
   ];
 
   const apiEndpoint = "http://127.0.0.1:8000/api/habitaciones/";
+  const [showForm, setShowForm] = useState(false); // Estado para mostrar/ocultar el formulario
+
+  const handleCreateClick = () => {
+    setShowForm(true);
+  };
+
   return (
-    <>
-      <div className="content">
-        <DataTable titles={titles} apiEndpoint={apiEndpoint} />
-      </div>
-    </>
+      <>
+        <div className="content">
+          {showForm ? (
+              <Formulario fields={titles} endpoint={apiEndpoint} />
+          ) : (
+              <Button onClick={handleCreateClick}>Crear registro</Button>
+          )}
+          {/* Ocultar la tabla cuando showForm sea verdadero */}
+          {!showForm && <DataTable titles={titles} apiEndpoint={apiEndpoint} />}
+        </div>
+      </>
   );
 }
+
 
 export default Habitaciones;

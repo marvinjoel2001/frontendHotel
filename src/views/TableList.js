@@ -15,7 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import React, {useState} from "react";
 
 // reactstrap components
 import {
@@ -25,9 +25,10 @@ import {
   CardTitle,
   Table,
   Row,
-  Col,
+  Col, Button,
 } from "reactstrap";
 import DataTable from "../components/DataTable/DataTable";
+import Formulario from "../components/form";
 
 function Pagos() {
   const titles = [
@@ -62,13 +63,26 @@ function Pagos() {
   ];
 
   const apiEndpoint = "http://127.0.0.1:8000/api/pagos/";
+  const [showForm, setShowForm] = useState(false); // Estado para mostrar/ocultar el formulario
+
+  const handleCreateClick = () => {
+    setShowForm(true);
+  };
+
   return (
-    <>
-      <div className="content">
-        <DataTable titles={titles} apiEndpoint={apiEndpoint} />
-      </div>
-    </>
+      <>
+        <div className="content">
+          {showForm ? (
+              <Formulario fields={titles} endpoint={apiEndpoint} />
+          ) : (
+              <Button onClick={handleCreateClick}>Crear registro</Button>
+          )}
+          {/* Ocultar la tabla cuando showForm sea verdadero */}
+          {!showForm && <DataTable titles={titles} apiEndpoint={apiEndpoint} />}
+        </div>
+      </>
   );
 }
+
 
 export default Pagos;

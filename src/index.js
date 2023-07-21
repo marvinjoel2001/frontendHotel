@@ -12,8 +12,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import ThemeContextWrapper from './components/ThemeWrapper/ThemeWrapper';
 import BackgroundColorWrapper from './components/BackgroundColorWrapper/BackgroundColorWrapper';
 import Login from './views/Login';
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import ReservaForm from "./views/Reserva";
 
 const App = () => {
     const initialLoggedInState = localStorage.getItem('isLoggedIn') === 'true';
@@ -22,14 +21,12 @@ const App = () => {
     const handleLoginSuccess = () => {
         setIsLoggedIn(true);
         localStorage.setItem('isLoggedIn', 'true');
-        // Redirigir a la ruta '/admin/dashboard'
         window.location.href = '/admin/dashboard';
     };
 
     const handleLogout = () => {
         setIsLoggedIn(false);
         localStorage.removeItem('isLoggedIn');
-        // Redirigir a la ruta '/login'
         window.location.href = '/login';
     };
 
@@ -39,10 +36,15 @@ const App = () => {
                 <Router>
                     <Routes>
                         <Route path="/login" element={<Login onLoginSuccess={handleLoginSuccess} />} />
+                        <Route path="/reserva-form" element={<ReservaForm />} />
+
+
+                        {/* Ruta para las páginas de administrador. */}
                         {isLoggedIn ? (
-                            <Route path="/admin/*" element={<AdminLayout />} />
+                            <Route path="/admin/*" element={<AdminLayout handleLogout={handleLogout} />} />
                         ) : (
-                            <Navigate to="/login" replace />
+                            // Si no ha iniciado sesión, se redirige al inicio de sesión.
+                            <Route path="*" element={<Navigate to="/login" replace />} />
                         )}
                     </Routes>
                 </Router>
@@ -51,4 +53,4 @@ const App = () => {
     );
 };
 
-root.render(<App />);
+ReactDOM.render(<App />, document.getElementById('root'));
